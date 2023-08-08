@@ -31,6 +31,9 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
+  @Column('enum')
+  role: 'user' | 'admin' = 'user';
+
   constructor(data: Partial<User> = {}) {
     Object.assign(this, data);
   }
