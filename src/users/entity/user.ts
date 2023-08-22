@@ -10,6 +10,8 @@ import {
   BeforeUpdate,
 } from 'typeorm';
 
+import { Role } from '../../roles/roles.service';
+
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -31,8 +33,12 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column('enum')
-  role: 'user' | 'admin' = 'user';
+  @Column({
+    type: 'enum',
+    enum: Role,
+    default: Role.USER,
+  })
+  role: Role;
 
   constructor(data: Partial<User> = {}) {
     Object.assign(this, data);
