@@ -3,10 +3,10 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, ExtractJwt, JwtFromRequestFunction } from 'passport-jwt';
 
 import { AuthService } from '../auth.service';
-import { User } from '../../user/user.entity';
+import { User } from '../../users/entity/user';
 import { JwtPayload } from '../interfaces/jwt-payload.interface';
 
-const extractJwtFromCookie: JwtFromRequestFunction = request => {
+const extractJwtFromCookie: JwtFromRequestFunction = (request) => {
   return request.signedCookies['token']!; // eslint-disable-line @typescript-eslint/no-non-null-assertion
 };
 
